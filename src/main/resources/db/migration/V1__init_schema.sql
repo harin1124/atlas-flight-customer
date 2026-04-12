@@ -29,6 +29,9 @@ CREATE TABLE CUSTOMER_BASIC
 # 인덱스
 ALTER TABLE CUSTOMER_BASIC ADD UNIQUE INDEX UK_CUSTOMER_BASIC_CUSTOMER_NUMBER (CUSTOMER_NUMBER);
 
+# =============================================
+# 고객 주소 테이블
+# =============================================
 
 # 테이블 생성
 CREATE TABLE CUSTOMER_ADDRESS
