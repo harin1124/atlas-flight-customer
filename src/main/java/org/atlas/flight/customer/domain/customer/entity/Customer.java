@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -31,7 +32,7 @@ public class Customer {
 	private String engLastName;
 	
 	@Column(name = "BIRTHDAY", nullable = false)
-	private int birthday;
+	private LocalDate birthday;
 	
 	@Column(name = "GENDER_CD", length = 6, nullable = false)
 	private String genderCd;

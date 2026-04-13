@@ -11,7 +11,7 @@ CREATE TABLE CUSTOMER
     KOR_LAST_NAME      VARCHAR(30)                          NOT NULL COMMENT '한글_성',
     ENG_FIRST_NAME     VARCHAR(30)                          NOT NULL COMMENT '영문_이름',
     ENG_LAST_NAME      VARCHAR(30)                          NOT NULL COMMENT '영문_성',
-    BIRTHDAY           INT                                  NOT NULL COMMENT '생년월일',
+    BIRTHDAY           DATE                                 NOT NULL COMMENT '생년월일',
     GENDER_CD          VARCHAR(6)                           NOT NULL COMMENT '성별_코드',
     PHONE_COUNTRY_CD   VARCHAR(6)                           NOT NULL COMMENT '휴대폰_국가_코드',
     PHONE_NUMBER       VARCHAR(100)                         NOT NULL COMMENT '휴대폰_번호',
