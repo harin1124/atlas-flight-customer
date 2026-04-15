@@ -27,6 +27,7 @@ public class CustomerController {
 	@Operation(summary = "고객 등록")
 	public ApiResponse<Void> createCustomer(@Valid @RequestBody CustomerCreateRequest request) {
 		System.out.println("request ::: " + request);
+		customerService.createCustomer(request);
 		return ApiResponse.success();
 	}
 }

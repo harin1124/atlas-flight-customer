@@ -2,6 +2,7 @@ package org.atlas.flight.customer.domain.customer.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -48,17 +49,17 @@ public class CustomerCreateRequest {
 	@Schema(description = "영문 성", minLength = 1, maxLength = 30)
 	private String engLastName;
 
-	@NotBlank
-	@Pattern(regexp = FormatValidation.LOCALDATE_ONLY_REGEXP, message = FormatValidation.LOCALDATE_ONLY)
+	@NotNull
 	@Schema(description = "생년월일")
 	private LocalDate birthday;
 
 	@NotBlank
+	@Size(min = 1, max = 6)
 	@Schema(description = "성별 코드", example = "MALE | FEMALE")
-	private LocalDate genderCd;
+	private String genderCd;
 
 	@NotBlank
-	@Size(min = 1)
+	@Size(min = 1, max = 6)
 	@Schema(description = "휴대폰 국가 코드", example = "82")
 	private String phoneCountryCd;
 
@@ -68,7 +69,11 @@ public class CustomerCreateRequest {
 	private String phoneNumber;
 
 	@NotBlank
-	@Pattern(regexp = FormatValidation.EMAIL_REGEXP, message = FormatValidation.EMAIL)
+	@Pattern(regexp = FormatValidation.EMAIL_ONLY_REGEXP, message = FormatValidation.EMAIL_ONLY)
 	@Schema(description = "이메일", example = "test@gmail.com")
 	private String email;
+
+	@Size(min = 1, max = 6)
+	@Schema(description = "선호 언어 코드", example = "KOR")
+	private String preferredLangCd;
 }

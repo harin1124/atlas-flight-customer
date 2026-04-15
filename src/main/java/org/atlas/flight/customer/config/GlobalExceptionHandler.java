@@ -46,6 +46,7 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ApiResponse<Object>> handleException(Exception ex) {
+		System.out.println("오류!");
 		ResponseCode code = ResponseCodeGeneral.UNKNOWN.getResponseCode();
 		String detailMessage = code.getResultDetailMessage();
 		if (isLocalProfile()) {
