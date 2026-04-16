@@ -46,11 +46,12 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ApiResponse<Object>> handleException(Exception ex) {
-		System.out.println("오류!");
 		ResponseCode code = ResponseCodeGeneral.UNKNOWN.getResponseCode();
 		String detailMessage = code.getResultDetailMessage();
 		if (isLocalProfile()) {
-			detailMessage = ex.getClass().getSimpleName();
+			String message = ex.getClass().getSimpleName() + " ::: " + ex.getMessage();
+			System.out.println("오류 ::: " + message);
+			detailMessage = message;
 		}
 		ApiResponse<Object> body = ApiResponse.builder()
 				.resultCode(code.getResultCode())
