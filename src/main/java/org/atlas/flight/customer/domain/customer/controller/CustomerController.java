@@ -1,6 +1,7 @@
 package org.atlas.flight.customer.domain.customer.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.atlas.flight.core.ApiResponse;
@@ -19,14 +20,14 @@ public class CustomerController {
 	
 	@GetMapping("/{customerId}")
 	@Operation(summary = "고객 조회")
-	public ApiResponse<Customer> getCustomer(@PathVariable String customerId) {
+	public ApiResponse<Customer> getCustomer(
+		@Parameter(description = "고객 아이디") @PathVariable String customerId) {
 		return ApiResponse.success(customerService.getCustomer(customerId));
 	}
 
 	@PostMapping
 	@Operation(summary = "고객 등록")
 	public ApiResponse<Void> createCustomer(@Valid @RequestBody CustomerCreateRequest request) {
-		System.out.println("request ::: " + request);
 		customerService.createCustomer(request);
 		return ApiResponse.success();
 	}

@@ -37,7 +37,7 @@ public class Customer {
 	
 	@Column(name = "ENG_LAST_NAME", length = 30, nullable = false)
 	private String engLastName;
-	
+
 	@Column(name = "BIRTHDAY", nullable = false)
 	private LocalDate birthday;
 	
@@ -46,7 +46,8 @@ public class Customer {
 	
 	@Column(name = "PHONE_COUNTRY_CD", length = 6, nullable = false)
 	private String phoneCountryCd;
-	
+
+	@Convert(converter = CryptoConverter.class)
 	@Column(name = "PHONE_NUMBER", length = 100, nullable = false)
 	private String phoneNumber;
 	
