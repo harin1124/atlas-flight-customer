@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Import;
 
 @Import(CryptoAutoConfiguration.class)
 @SpringBootApplication
-public class AtlasFlightCustomerApplication {
+public class CustomerApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(AtlasFlightCustomerApplication.class, args);
+		SpringApplication.run(CustomerApplication.class, args);
 	}
 }
