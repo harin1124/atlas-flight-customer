@@ -17,3 +17,8 @@ server:
   port: 8086
   servlet:
     context-path: /customer
+
+logging:
+  level:
+    jdbc: 'OFF'              # log4jdbc audit/connection/resultset 차단 (HikariCP housekeeper의 Connection.isValid 노이즈 포함)
+    jdbc.sqltiming: 'INFO'   # 실행 SQL + 수행시간은 유지
