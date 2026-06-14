@@ -9,6 +9,8 @@ import org.atlas.flight.customer.domain.customer.mapper.CustomerMapper;
 import org.atlas.flight.customer.domain.customer.issuance.CustomerNumberIssuer;
 import org.atlas.flight.customer.domain.customer.repository.CustomerRepository;
 import org.atlas.flight.customer.domain.customer.service.CustomerService;
+import org.atlas.flight.customer.domain.passenger.entity.Passenger;
+import org.atlas.flight.customer.domain.passenger.repository.PassengerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +20,7 @@ public class CustomerImpl implements CustomerService {
 	private final CustomerRepository customerRepository;
 	private final CustomerMapper customerMapper;
 	private final CustomerNumberIssuer customerNumberIssuer;
+	private final PassengerRepository passengerRepository;
 	
 	@Override
 	public Customer getCustomer(String customerId) {
@@ -34,6 +37,9 @@ public class CustomerImpl implements CustomerService {
 		}
 		String customerNumber = customerNumberIssuer.issueNext();
 		Customer toSave = customerMapper.toEntity(request, customerNumber);
-		customerRepository.save(toSave);
+		Customer saved = customerRepository.save(toSave);
+
+		// 가입과 동시에 본인을 탑승자로 자동등록 (관계 SELF, 같은 트랜잭션)
+		passengerRepository.save(Passenger.createSelf(saved));
 	}
 }
