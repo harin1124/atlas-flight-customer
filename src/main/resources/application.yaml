@@ -10,7 +10,10 @@ spring:
     password: ${DB_PASSWORD}
   jpa:
     hibernate:
-      ddl-auto: update
+      # 스키마는 Flyway 마이그레이션(db/migration)으로만 관리한다.
+      # validate: 엔티티와 실제 스키마가 어긋나면 기동 시점에 바로 실패시켜 드리프트를 조기에 잡는다.
+      # (과거 update 가 REL_CD 유령 컬럼을 만들어 버그를 숨겼던 재발 방지)
+      ddl-auto: validate
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 server:
