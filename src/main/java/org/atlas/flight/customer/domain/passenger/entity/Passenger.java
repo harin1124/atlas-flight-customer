@@ -34,7 +34,7 @@ public class Passenger {
 	private String passengerCustomerId;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "REL_CD", length = 6, nullable = false)
+	@Column(name = "RELATION_CD", length = 6, nullable = false)
 	private RelCd relCd;
 
 	@Column(name = "DEL_YN", length = 1, nullable = false)
