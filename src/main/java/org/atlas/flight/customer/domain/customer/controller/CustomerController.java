@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.atlas.flight.core.ApiResponse;
+import org.atlas.flight.core.annotation.CurrentUser;
 import lombok.RequiredArgsConstructor;
 import org.atlas.flight.customer.domain.customer.dto.request.CustomerCreateRequest;
 import org.atlas.flight.customer.domain.customer.entity.Customer;
@@ -17,7 +18,13 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "고객")
 public class CustomerController {
 	private final CustomerService customerService;
-	
+
+	@GetMapping("/me")
+	@Operation(summary = "내 정보 조회")
+	public ApiResponse<Customer> getMe(@CurrentUser String customerId) {
+		return ApiResponse.success(customerService.getCustomer(customerId));
+	}
+
 	@GetMapping("/{customerId}")
 	@Operation(summary = "고객 조회")
 	public ApiResponse<Customer> getCustomer(
