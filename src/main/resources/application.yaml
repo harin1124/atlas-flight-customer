@@ -1,12 +1,15 @@
 crypto:
   secret-key: ${CRYPTO_SECRET_KEY}
 spring:
+  config:
+    # 로컬 공통 설정(DB 스키마·계정·비밀번호 등) — 키 목록은 메타 레포 .claude/skills/db-setup/env.example 참고
+    import: optional:file:${user.home}/.config/atlas-flight/.env[.properties]
   application:
     name: customer
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:mariadb://localhost:3306/ATF_CUSTOMER?allowMultiQueries=true
-    username: atf_customer_admin
+    url: jdbc:log4jdbc:mariadb://${DB_HOST:localhost}:${DB_PORT:3306}/${CUSTOMER_DB_SCHEMA}?allowMultiQueries=true
+    username: ${CUSTOMER_DB_USERNAME}
     password: ${DB_PASSWORD}
   jpa:
     hibernate:
